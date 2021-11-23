@@ -20,6 +20,7 @@ body {
   line-height: 1.7; /* znači da je height veći od običnog za 1.7x tako da bude malo izdužen u visinu */
   color: #777;
   padding: 30px; /* postavlja bijelo oko čitave stanice da bi se istaknuo content */
+  position: relative; /* position relative na parentu je postition absolute na childu */
 }
 .header {
   height: 95vh;
@@ -35,4 +36,40 @@ body {
 
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   /* kordinate(x y, x y, x y, x y) određuju kakav će biti oblik objekta na koji je postavljen polygon */
+}
+.logo-box {
+  position: absolute;
+  top: 60px; /* top i left računaju udaljenost od relative position parenta */
+  left: 60px;
+}
+
+.logo {
+  height: 35px;
+}
+.text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-47%, -50%);
+  /* pozicija je relativna na parent, te nakon što pomaknemo kontenjer dolje i desno za 50%, 
+  da bi sadržaj tog kontenjera došao u centar 
+  moramo njega šiftati relativno prema njemu pa koristimo transform translate
+  Naravno uvijek je responsivno prema screenu */
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+}
+.heading-primary-main {
+  display: block; /* block okupira 100% of width i tako element bude sam u jednom lineu */
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 35px;
+}
+.heading-primary-sub {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 17.4px;
 }
