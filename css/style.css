@@ -60,16 +60,52 @@ body {
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
+
+  backface-visibility: hidden;
+  /* određuje da li su "leđa" nekog elementa vidljiva, pa ako okrenemo po y ili x osi element za 180%, 
+  ne bi ga mogli vidjeti jer bi pokazivao samo leđa elementa */
+  /* kada dođe do greške i parent element se malo protrese zajedno sa childom ovo je kod za fix */
 }
 .heading-primary-main {
   display: block; /* block okupira 100% of width i tako element bude sam u jednom lineu */
   font-size: 60px;
   font-weight: 400;
   letter-spacing: 35px;
+  opacity: 0;
+  animation: moveInLeft 1s 0.5s ease-out forwards;
 }
 .heading-primary-sub {
   display: block;
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 17.4px;
+  opacity: 0;
+  animation: moveInRight 1s 0.5s ease-out forwards;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  80% {
+    transform: translateX(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  80% {
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
