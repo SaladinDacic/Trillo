@@ -48,16 +48,16 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   /* kordinate(x y, x y, x y, x y) određuju kakav će biti oblik objekta na koji je postavljen polygon */
 }
-.logo-box {
+.header__logo-box {
   position: absolute;
   top: 6rem; /* top i left računaju udaljenost od relative position parenta */
   left: 6rem;
 }
 
-.logo {
+.header__logo {
   height: 3.5rem;
 }
-.text-box {
+.header__text-box {
   position: absolute;
   top: 40%;
   left: 50%;
@@ -78,7 +78,7 @@ body {
   ne bi ga mogli vidjeti jer bi pokazivao samo leđa elementa */
   /* kada dođe do greške i parent element se malo protrese zajedno sa childom ovo je kod za fix */
 }
-.heading-primary-main {
+.heading-primary--main {
   display: block; /* block okupira 100% of width i tako element bude sam u jednom lineu */
   font-size: 6rem;
   font-weight: 400;
@@ -86,7 +86,7 @@ body {
   opacity: 0;
   animation: moveInLeft 1s 0.5s ease-out forwards;
 }
-.heading-primary-sub {
+.heading-primary--sub {
   display: block;
   font-size: 2rem;
   font-weight: 700;
@@ -158,7 +158,7 @@ body {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
 }
 
-.btn-white {
+.btn--white {
   background-color: #fff;
   color: #777;
 }
@@ -182,10 +182,10 @@ body {
   opacity: 0;
 }
 
-.btn-white::after {
+.btn--white::after {
   background-color: #fff;
 }
-.btn-animated {
+.btn--animated {
   /* opacity: 0; */
   animation: moveInBottom 1s 0.5s ease-out forwards;
   animation-fill-mode: backwards;
