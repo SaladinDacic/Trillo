@@ -55,12 +55,13 @@ body {
   da bi sadržaj tog kontenjera došao u centar 
   moramo njega šiftati relativno prema njemu pa koristimo transform translate
   Naravno uvijek je responsivno prema screenu */
+  text-align: center;
 }
 
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
-
+  margin: 60px;
   backface-visibility: hidden;
   /* određuje da li su "leđa" nekog elementa vidljiva, pa ako okrenemo po y ili x osi element za 180%, 
   ne bi ga mogli vidjeti jer bi pokazivao samo leđa elementa */
@@ -108,4 +109,74 @@ body {
     opacity: 1;
     transform: translateX(0);
   }
+}
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn:link, /* :link refera na anchor tag "a" na elementu a visited na isti taj link kad je pritisnut */
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  /* /mijenja prop elementa sa text inline u inline-block, 
+  zauzima vlastiti prostor i ne overley-a elemente iznad njega 
+  Uvijek ovo treba koristiti ovo kada želimo stavljati padding width i height na element */
+  border-radius: 100px;
+  transition: all 0.2s;
+  /* napravi sporu tranziciju između promjena koje effectaju ovaj button
+     pa se button glatko pomjera fiiiiiii*/
+  position: relative;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+.btn::after {
+  /* after dodaje child element na već postojeći element 
+  pa moramo da ga napravimo skoro identičnim kako bi ga sakrili iza postojećeg elementa */
+  content: ""; /* content se mora staviti čak iako je prazan da bi radilo */
+  display: inline-block; /* inline-block je zato što je i btn inline-block */
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: 0.4s;
+}
+.btn:hover::after {
+  /* postavi hover na child zvani "after" */
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+.btn-animated {
+  /* opacity: 0; */
+  animation: moveInBottom 1s 0.5s ease-out forwards;
+  animation-fill-mode: backwards;
+  /* odmah na startu stranice stavi sve propse iz animacije, 
+  pa tako u ovom slučaju element u početku bude opacity 0 */
 }
