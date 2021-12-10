@@ -1,0 +1,194 @@
+/* 
+COLORS:
+
+LightGreen : #7ed56f, rgba(126, 213, 111, 1)
+MediumGreen : #55c57a, rgba(85, 197, 122, 1)
+DarkGreen : #28b485, rgba(40, 180, 133, 1)
+*/
+
+*,
+*::after,
+*::before {
+  /* selektuje sve elemente, plus sve pseudo elemente before i after */
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* font-size: 10px; */
+  font-size: 62.5%;
+  /* 16px*62.5% === 10px */
+  /* Omogućava da korisnik zooma i zoom outa našu stranicu */
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  /* font-family je Lato a ako nema ond je sans-serif, uvijek stavljati font na parent componentu */
+  font-weight: 400;
+  line-height: 1.7; /* znači da je height veći od običnog za 1.7x tako da bude malo izdužen u visinu */
+  color: #777;
+  padding: 3rem; /* postavlja bijelo oko čitave stanice da bi se istaknuo content */
+  position: relative; /* position relative na parentu je postition absolute na childu */
+  box-sizing: border-box; /* borders and paddings nisu promjenjeni zbog widtha i heighta box-a*/
+}
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(126, 213, 111, 0.8),
+      rgba(40, 180, 133, 0.8)
+    ),
+    url("../img/hero.jpg"); /* gradiandt će ići na desno-dolje preko slike */
+  background-size: cover; /* postavlja sliku da prekrije čitav element i scala se sa tim elementom */
+  background-position: top; /* top, bottom, center */
+  /* slika će uvijek biti na vrhu i prikazivati se od vrha prema dolje, te vrh se neće mutirati. u slučaju malog ekrana dno se mutira i mijenja*/
+
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  /* kordinate(x y, x y, x y, x y) određuju kakav će biti oblik objekta na koji je postavljen polygon */
+}
+.header__logo-box {
+  position: absolute;
+  top: 6rem; /* top i left računaju udaljenost od relative position parenta */
+  left: 6rem;
+}
+
+.header__logo {
+  height: 3.5rem;
+}
+.header__text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-47%, -50%);
+  /* pozicija je relativna na parent, te nakon što pomaknemo kontenjer dolje i desno za 50%, 
+  da bi sadržaj tog kontenjera došao u centar 
+  moramo njega šiftati relativno prema njemu pa koristimo transform translate
+  Naravno uvijek je responsivno prema screenu */
+  text-align: center;
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  margin: 6rem;
+  backface-visibility: hidden;
+  /* određuje da li su "leđa" nekog elementa vidljiva, pa ako okrenemo po y ili x osi element za 180%, 
+  ne bi ga mogli vidjeti jer bi pokazivao samo leđa elementa */
+  /* kada dođe do greške i parent element se malo protrese zajedno sa childom ovo je kod za fix */
+}
+.heading-primary--main {
+  display: block; /* block okupira 100% of width i tako element bude sam u jednom lineu */
+  font-size: 6rem;
+  font-weight: 400;
+  letter-spacing: 3.5rem;
+  opacity: 0;
+  animation: moveInLeft 1s 0.5s ease-out forwards;
+}
+.heading-primary--sub {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1.74rem;
+  opacity: 0;
+  animation: moveInRight 1s 0.5s ease-out forwards;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+  80% {
+    transform: translateX(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+  80% {
+    transform: translateX(-1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(10rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn:link, /* :link refera na anchor tag "a" na elementu a visited na isti taj link kad je pritisnut */
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  /* /mijenja prop elementa sa text inline u inline-block, 
+  zauzima vlastiti prostor i ne overley-a elemente iznad njega 
+  Uvijek ovo treba koristiti ovo kada želimo stavljati padding width i height na element */
+  border-radius: 10rem;
+  transition: all 0.2s;
+  /* napravi sporu tranziciju između promjena koje effectaju ovaj button
+     pa se button glatko pomjera fiiiiiii*/
+  position: relative;
+  font-size: 1.6rem;
+}
+
+.btn:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+}
+.btn:active {
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+.btn--white {
+  background-color: #fff;
+  color: #777;
+}
+.btn::after {
+  /* after dodaje child element na već postojeći element 
+  pa moramo da ga napravimo skoro identičnim kako bi ga sakrili iza postojećeg elementa */
+  content: ""; /* content se mora staviti čak iako je prazan da bi radilo */
+  display: inline-block; /* inline-block je zato što je i btn inline-block */
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: 0.4s;
+}
+.btn:hover::after {
+  /* postavi hover na child zvani "after" */
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn--white::after {
+  background-color: #fff;
+}
+.btn--animated {
+  /* opacity: 0; */
+  animation: moveInBottom 1s 0.5s ease-out forwards;
+  animation-fill-mode: backwards;
+  /* odmah na startu stranice stavi sve propse iz animacije, 
+  pa tako u ovom slučaju element u početku bude opacity 0 */
+}
