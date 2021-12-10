@@ -1,0 +1,59 @@
+.btn {
+  &:link, /* :link refera na anchor tag "a" na elementu a visited na isti taj link kad je pritisnut */
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    /* /mijenja prop elementa sa text inline u inline-block, 
+    zauzima vlastiti prostor i ne overley-a elemente iznad njega 
+    Uvijek ovo treba koristiti ovo kada želimo stavljati padding width i height na element */
+    border-radius: 10rem;
+    transition: all 0.2s;
+    /* napravi sporu tranziciju između promjena koje effectaju ovaj button
+      pa se button glatko pomjera fiiiiiii*/
+    position: relative;
+    font-size: 1.6rem;
+  }
+  &::after {
+    /* after dodaje child element na već postojeći element 
+    pa moramo da ga napravimo skoro identičnim kako bi ga sakrili iza postojećeg elementa */
+    content: ""; /* content se mora staviti čak iako je prazan da bi radilo */
+    display: inline-block; /* inline-block je zato što je i btn inline-block */
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: 0.4s;
+  }
+  &:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.3);
+  }
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.3);
+    &::after {
+      /* postavi hover na child zvani "after" */
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+    &::after {
+      background-color: $color-white;
+    }
+  }
+  &--animated {
+    /* opacity: 0; */
+    animation: moveInBottom 1s 0.5s ease-out forwards;
+    animation-fill-mode: backwards;
+    /* odmah na startu stranice stavi sve propse iz animacije, 
+    pa tako u ovom slučaju element u početku bude opacity 0 */
+  }
+}

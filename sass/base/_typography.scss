@@ -1,0 +1,36 @@
+body {
+  font-family: "Lato", sans-serif;
+  /* font-family je Lato a ako nema ond je sans-serif, uvijek stavljati font na parent componentu */
+  font-weight: 400;
+  line-height: 1.7; /* znači da je height veći od običnog za 1.7x tako da bude malo izdužen u visinu */
+  color: $color-grey-dark;
+  padding: 3rem; /* postavlja bijelo oko čitave stanice da bi se istaknuo content */
+  position: relative; /* position relative na parentu je postition absolute na childu */
+  box-sizing: border-box; /* borders and paddings nisu promjenjeni zbog widtha i heighta box-a*/
+}
+
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+  margin: 6rem;
+  backface-visibility: hidden;
+  /* određuje da li su "leđa" nekog elementa vidljiva, pa ako okrenemo po y ili x osi element za 180%, 
+  ne bi ga mogli vidjeti jer bi pokazivao samo leđa elementa */
+  /* kada dođe do greške i parent element se malo protrese zajedno sa childom ovo je kod za fix */
+  &--main {
+    display: block; /* block okupira 100% of width i tako element bude sam u jednom lineu */
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    opacity: 0;
+    animation: moveInLeft 1s 0.5s ease-out forwards;
+  }
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.74rem;
+    opacity: 0;
+    animation: moveInRight 1s 0.5s ease-out forwards;
+  }
+}
