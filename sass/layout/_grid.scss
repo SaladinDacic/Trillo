@@ -12,7 +12,7 @@
 
   [class^="col-"] {
     // background-color: lighten(orangered, 15%);
-    color: blue;
+    // color: blue;
     float: left;
     &:not(:last-child) {
       //select everything expect last-child
