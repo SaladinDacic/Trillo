@@ -11,6 +11,7 @@
   background-position: top; /* top, bottom, center */
   /* slika će uvijek biti na vrhu i prikazivati se od vrha prema dolje, te vrh se neće mutirati. u slučaju malog ekrana dno se mutira i mijenja*/
 
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   /* kordinate(x y, x y, x y, x y) određuju kakav će biti oblik objekta na koji je postavljen polygon */
   &__logo-box {
