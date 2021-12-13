@@ -33,71 +33,8 @@ html {
   /* Omogućava da korisnik zooma i zoom outa našu stranicu */ }
 
 body {
-  font-family: "Lato", sans-serif;
-  /* font-family je Lato a ako nema ond je sans-serif, uvijek stavljati font na parent componentu */
-  font-weight: 400;
-  line-height: 1.7;
-  /* znači da je height veći od običnog za 1.7x tako da bude malo izdužen u visinu */
-  color: #777;
-  padding: 3rem;
-  /* postavlja bijelo oko čitave stanice da bi se istaknuo content */
-  position: relative;
-  /* position relative na parentu je postition absolute na childu */
   box-sizing: border-box;
   /* borders and paddings nisu promjenjeni zbog widtha i heighta box-a*/ }
-
-.header {
-  height: 95vh;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
-  /* gradiandt će ići na desno-dolje preko slike */
-  background-size: cover;
-  /* postavlja sliku da prekrije čitav element i scala se sa tim elementom */
-  background-position: top;
-  /* top, bottom, center */
-  /* slika će uvijek biti na vrhu i prikazivati se od vrha prema dolje, te vrh se neće mutirati. u slučaju malog ekrana dno se mutira i mijenja*/
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  /* kordinate(x y, x y, x y, x y) određuju kakav će biti oblik objekta na koji je postavljen polygon */ }
-  .header__logo-box {
-    position: absolute;
-    top: 6rem;
-    /* top i left računaju udaljenost od relative position parenta */
-    left: 6rem; }
-  .header__logo {
-    height: 3.5rem; }
-  .header__text-box {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-47%, -50%);
-    /* pozicija je relativna na parent, te nakon što pomaknemo kontenjer dolje i desno za 50%, 
-    da bi sadržaj tog kontenjera došao u centar 
-    moramo njega šiftati relativno prema njemu pa koristimo transform translate
-    Naravno uvijek je responsivno prema screenu */
-    text-align: center; }
-
-.heading-primary {
-  color: #fff;
-  text-transform: uppercase;
-  margin: 6rem;
-  backface-visibility: hidden;
-  /* određuje da li su "leđa" nekog elementa vidljiva, pa ako okrenemo po y ili x osi element za 180%, 
-  ne bi ga mogli vidjeti jer bi pokazivao samo leđa elementa */
-  /* kada dođe do greške i parent element se malo protrese zajedno sa childom ovo je kod za fix */ }
-  .heading-primary--main {
-    display: block;
-    /* block okupira 100% of width i tako element bude sam u jednom lineu */
-    font-size: 6rem;
-    font-weight: 400;
-    letter-spacing: 3.5rem;
-    opacity: 0;
-    animation: moveInLeft 1s 0.5s ease-out forwards; }
-  .heading-primary--sub {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1.74rem;
-    opacity: 0;
-    animation: moveInRight 1s 0.5s ease-out forwards; }
 
 @keyframes moveInLeft {
   0% {
@@ -126,6 +63,80 @@ body {
   100% {
     opacity: 1;
     transform: translateY(0); } }
+
+body {
+  font-family: "Lato", sans-serif;
+  /* font-family je Lato a ako nema ond je sans-serif, uvijek stavljati font na parent componentu */
+  font-weight: 400;
+  line-height: 1.7;
+  /* znači da je height veći od običnog za 1.7x tako da bude malo izdužen u visinu */
+  color: #777;
+  padding: 3rem;
+  /* postavlja bijelo oko čitave stanice da bi se istaknuo content */
+  position: relative;
+  /* position relative na parentu je postition absolute na childu */
+  box-sizing: border-box;
+  /* borders and paddings nisu promjenjeni zbog widtha i heighta box-a*/ }
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  margin: 6rem;
+  backface-visibility: hidden;
+  /* određuje da li su "leđa" nekog elementa vidljiva, pa ako okrenemo po y ili x osi element za 180%, 
+  ne bi ga mogli vidjeti jer bi pokazivao samo leđa elementa */
+  /* kada dođe do greške i parent element se malo protrese zajedno sa childom ovo je kod za fix */ }
+  .heading-primary--main {
+    display: block;
+    /* block okupira 100% of width i tako element bude sam u jednom lineu */
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    opacity: 0;
+    animation: moveInLeft 1s 0.5s ease-out forwards; }
+  .heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.74rem;
+    opacity: 0;
+    animation: moveInRight 1s 0.5s ease-out forwards; }
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(to right, #7ed56f, #28b485);
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 0.2rem;
+  transition: all 0.2s; }
+  .heading-secondary:hover {
+    transform: skewY(2.5deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+
+.heading-tertiary {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase; }
+
+.paragraph {
+  font-size: 1.6rem; }
+  .paragraph:not(:last-child) {
+    margin-bottom: 3rem; }
+
+.u-center-text {
+  text-align: center; }
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem; }
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem; }
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem; }
 
 .btn:link, .btn:visited {
   text-transform: uppercase;
@@ -182,3 +193,137 @@ body {
   animation-fill-mode: backwards;
   /* odmah na startu stranice stavi sve propse iz animacije, 
     pa tako u ovom slučaju element u početku bude opacity 0 */ }
+
+.btn-text:link, .btn-text:visited {
+  font-size: 1.6rem;
+  color: #55c57a;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 0.1rem solid #55c57a;
+  padding: 0.3rem;
+  transition: all 0.2s; }
+
+.btn-text:hover {
+  background-color: #55c57a;
+  color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+  transform: translateY(-0.2rem); }
+
+.btn-text:active {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  transform: translateY(0); }
+
+.composition {
+  position: relative; }
+  .composition__photo {
+    width: 55%;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+    position: absolute;
+    z-index: 10;
+    transition: all 0.2s;
+    outline-offset: 1.5rem; }
+    .composition__photo--p1 {
+      left: 0;
+      top: -2rem; }
+    .composition__photo--p2 {
+      right: 0;
+      top: 2rem; }
+    .composition__photo--p3 {
+      left: 20%;
+      top: 10rem; }
+    .composition__photo:hover {
+      outline: 1.5rem solid #55c57a;
+      transform: scale(1.08);
+      box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
+      z-index: 20; }
+  .composition:hover .composition__photo:not(:hover) {
+    transform: scale(0.9) translateY(-0.5rem); }
+
+.feature-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 1.5rem;
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  transition: all 0.2s; }
+  .feature-box:hover {
+    transform: translateY(-1.5rem) scale(1.03); }
+  .feature-box__icon {
+    color: transparent;
+    font-size: 6rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    background-image: linear-gradient(to right, #7ed56f, #28b485);
+    -webkit-background-clip: text; }
+
+.header {
+  height: 95vh;
+  position: relative;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
+  /* gradiandt će ići na desno-dolje preko slike */
+  background-size: cover;
+  /* postavlja sliku da prekrije čitav element i scala se sa tim elementom */
+  background-position: top;
+  /* top, bottom, center */
+  /* slika će uvijek biti na vrhu i prikazivati se od vrha prema dolje, te vrh se neće mutirati. u slučaju malog ekrana dno se mutira i mijenja*/
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  /* kordinate(x y, x y, x y, x y) određuju kakav će biti oblik objekta na koji je postavljen polygon */ }
+  .header__logo-box {
+    position: absolute;
+    top: 6rem;
+    /* top i left računaju udaljenost od relative position parenta */
+    left: 6rem; }
+  .header__logo {
+    height: 3.5rem; }
+  .header__text-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-47%, -50%);
+    /* pozicija je relativna na parent, te nakon što pomaknemo kontenjer dolje i desno za 50%, 
+    da bi sadržaj tog kontenjera došao u centar 
+    moramo njega šiftati relativno prema njemu pa koristimo transform translate
+    Naravno uvijek je responsivno prema screenu */
+    text-align: center; }
+
+.row {
+  max-width: 114rem;
+  margin: 0 auto; }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }
+  .row::after {
+    content: "";
+    display: table;
+    clear: both; }
+  .row [class^="col-"] {
+    float: left; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 6rem; }
+  .row .col-1-of-2 {
+    width: calc((100% - 6rem) / 2); }
+  .row .col-1-of-3 {
+    width: calc((100% - 6rem* 2) / 3); }
+  .row .col-2-of-3 {
+    width: calc((100% - 6rem/ 2) * 2 / 3); }
+  .row .col-1-of-4 {
+    width: calc((100% - 6rem* 3) / 4); }
+  .row .col-2-of-4 {
+    width: calc((100% - 6rem) / 2); }
+  .row .col-3-of-4 {
+    width: calc((100% - 6rem/ 3) * 3 / 4); }
+
+.section-about {
+  background-color: #f7f7f7;
+  padding: 25rem 0;
+  margin-top: -20vh; }
+
+.section-features {
+  padding: 20rem;
+  margin-top: -10rem;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/nat-4.jpg");
+  /* gradiandt će ići na desno-dolje preko slike */
+  background-size: cover;
+  transform: skewY(-7deg); }
+  .section-features > * {
+    transform: skewY(7deg); }
